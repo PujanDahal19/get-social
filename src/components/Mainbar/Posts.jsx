@@ -4,7 +4,7 @@ import {FaRegComment, FaComment} from 'react-icons/fa'
 import { PostContext } from '../../context/PostContext'
 import { formatDistanceToNow } from 'date-fns'
 import { FormContext } from '../../context/FormContext'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { CommentContext } from '../../context/CommentContext'
 
 
@@ -13,7 +13,7 @@ const Posts = ({post}) => {
     const {userInfo} = useContext(FormContext);
     const {comments} = useContext(CommentContext);
 
-    const isLiked = post.likes.includes(userInfo.id);
+    const isLiked = userInfo ? post.likes.includes(userInfo.id) : null;
     const[count,setCount] = useState(0);
 
     const handleDelete = (id)=>{
@@ -51,7 +51,7 @@ const Posts = ({post}) => {
                             </p>
                         </div>
                     </div>
-                    {post.userId === userInfo.id ? 
+                    {post.userId === userInfo?.id ? 
                         <div className="user-btns">
                             <button onClick={()=>handleDelete(post.id)} className="delete-btn"><AiFillDelete /></button>
                         </div>
