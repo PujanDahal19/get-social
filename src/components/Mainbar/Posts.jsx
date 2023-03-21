@@ -13,7 +13,7 @@ const Posts = ({post}) => {
     const {userInfo} = useContext(FormContext);
     const {comments} = useContext(CommentContext);
 
-    const isLiked = userInfo ? post.likes.includes(userInfo.id) : null;
+    const isLiked = post.likes.includes(userInfo?.id);
     const[count,setCount] = useState(0);
 
     const handleDelete = (id)=>{
